@@ -1,0 +1,127 @@
+% ------------------------------------------------------------------------------------------------------ %
+% Beispieldokument zur Veranschaulichung der Erzeugung von latex-Zitationen in uebereinstimmung mit 
+% Richtlinien des Fachgebiets Audiokommunikation.
+%
+% Bisher sind zwei Sprachen (Deutsch, Englisch) sowie zwei Zitationsstile (Autor/Jahr, Nummern) waehlbar.
+%
+%
+% Lieferumfang, bzw. zur korrekten Funktion benoetigte Dateien:
+%
+% Literatur.tex 								-	dieses tex-Dokument
+% Bibliography.bib							- eine Besipielbibliographie
+% FG_AK_Deutsch_AutorJahr.bst   - style-file
+% FG_AK_Deutsch_Nummern.bst     - " - 
+% FG_AK_English_AuthorYear.bst  - " -  
+% FG_AK_English_Number.bst      - " - 
+% FG_AK_Deutsch_AutorJahr.pdf   - pdf zur Dokumentation einer korrekten Kompilation
+% FG_AK_Deutsch_Nummern.pdf     - " -
+% FG_AK_English_AuthorYear.pdf  - " -
+% FG_AK_English_Number.pdf      - " -
+%
+% sowie, zur naeheren Erlaeuterung:
+%
+% FG AK Zitieren und Verweisen Anwendungsbeispiele.pdf
+% FG AK Zitieren und Verweisen Systeme.pdf
+%
+%-----------------------------------------%
+% Fachgebiet Audiokommunikation, TU Berlin
+% F. Brinkmann, A. Lindau, H.-J. Maempel
+% (C) 2011
+%
+% vs. 0.1 18.10.2011 FB
+% vs  0.2 18.10.2011 AL, todo Nummerierung-Deutsch(!) noch in Zitationsreihenfolge, nicht alphabetisch!
+% ------------------------------------------------------------------------------------------------------ %
+\documentclass[12pt,oneside,a4paper]{scrartcl}	% Schriftgroesse, Layout, Papierformat, Art des Dokumentes
+\usepackage[utf8]{inputenc}											% Umlaute ermoeglichen
+
+
+% Sprache durch auskommentieren waehlen
+%\usepackage[english]{babel}											% Englisch
+\usepackage{ngerman}												% ... Deutsch, neue Rechtschreibung
+
+
+% Korrekte Einbindung des natbib Packages, je nach gewaehltem Zitationsstil auskommentieren
+\usepackage{natbib}	    											% ... fuer Autor/Jahr-Stil
+%\usepackage[numbers]{natbib}   									% ... fuer Nummerierungsstil	
+
+
+% Zur Wahl des Zitations- und Bibliography-Stils die folgenden Zeilen entprechend ein bzw. 
+% auskommentieren. Bisher sind zwei Sprachen (Deutsch, Englisch) sowie zwei Zitationsstile 
+% (Autor/Jahr, Nummern) waehlbar:
+%
+%\bibliographystyle{FG_AK_English_AuthorYear}
+%\bibliographystyle{FG_AK_English_Number}
+\bibliographystyle{FG_AK_Deutsch_AutorJahr}
+%\bibliographystyle{FG_AK_Deutsch_Nummer}
+
+
+% ------------------ %
+\begin{document}
+
+\section{Publikationstypen}
+
+\hspace{.4cm}\textbf{Monografie:}\\
+\cite{Bortz2005},\\
+
+\textbf{Sammelband:}\\
+\cite{Ahnert2008},\\
+
+\textbf{Zeitschriftenartikel:}\\
+% J.Sound Vib - 1 Autor
+\cite{Barron1971},\\
+% J. Audio Eng. Soc. - 2 Autoren
+\cite{Berg2006},\\
+% J. Hochfreq. - 3 Autoren, im Fliesstext ab jetzt per 'et al.' zitiert, wenn nicht mit '*' zitiert (\cite*{Moller1992})
+\cite{Reichhardt1955},\\
+% J. Audio Eng. Sog. - Titel endet mit einem ?
+\cite{Moller1996},\\
+% Rundfunktech. Mitteilungen - Bei mehr als 5 Autoren in Bibliographie mit Erstautor et al.
+\cite{Blauert1978},\\
+
+\textbf{Online first Zeitschriftenartikel (wie Zeitschriftenartikel):}\\
+\cite{Brodsky2011},\\
+
+\textbf{Technical Report (wie Zeitschriftenartikel):}\\
+%j. Report - 2 Autoren
+\cite{Somerville1963},\\
+
+\textbf{Kongressbeitrag:}\\
+% AES Convention
+\cite{Berg2000},\\
+
+\textbf{Internetressource:}\\
+\cite{Ledergerber2002},\\
+
+\textbf{Abschlussarbeit:}\\
+\cite{Lindau2006},\\
+
+\textbf{Normen und Empfehlungen (wie Monografie):}\\
+% Zitation einer Norm mit Angabe des Jahrs oder Nummer. Das ~ Zeichen setzt ein Leerzeichen und verhindert gleichzeitig einen Zeilenumbruch.
+DIN~33402-2E\nocite{DIN33402-2E},\\  % bei Autor/Jahr ~(\citeyear{DIN33402-2E}), bei Nummern ~\cite{DIN33402-2E}
+% Zitation einer Norm ohne Angabe des Jahrs. Sie erscheint trotzdem im Literaturverzeichnis.
+Rec.~ITU-R~BS.1116-1\nocite{ITU_R1116-1}.\\
+
+\clearpage
+
+\section{Zitation im Text}
+\citet{Ahnert2008}\\
+\citet[Fig.~5.1]{Ahnert2008}\\
+\citep{Ahnert2008}\\
+\citep[p.~200]{Ahnert2008}\\
+\citep[c.f.][]{Ahnert2008}\\
+\citep[c.f.][Fig.~5.1]{Ahnert2008}\\
+\citep{Ahnert2008, Barron1971}
+
+
+\section{Anmerkung}
+Um das Literaturverzeichnis zu erzeugen, muss zunaechst Latex ausgefuehrt werden, wodurch die zitierten BibItems in eine aux-Datei geschrieben werden. Danach BibTex ausfuehren, um die BibItems zu uebernehmen und zum Schluss noch dreimal (!) Tex ausfuehren. Beim ersten Mal, wird das Literaturverzeichnis erstellt, beim zweiten und dritten Mal werden die Verlinkungen im Text geschaffen.
+
+Um die gewuenschte Formatierung zu schaffen muessen auch die BibTex Eintraege entsprechend formatiert sein. Freie Programme zur Literaturverwaltung sind z.B. JabRef fuer Windows, Mac und Linux oder BibDesk fuer Mac. Beispiele fuer die korrekte Formatierung sind in der beiliegenden Bibliographie enthalten.
+
+Bei Abschlussarbeiten kann der Typ (Masterarbeit, Bachelorarbeit etc.) ueber das Bibtex-Feld 'Type' definiert werden. Die Standardeinstellungen sind 'Masterarbeit' bei deutschen und 'Master's Thesis' bei englischen Dokumenten.
+
+Wenn das Packet 'csquotes' benutzt wird, muss in der bbl-Datei die zweite Zeile mit '\%' auskommentiert werden: \%\textbackslash newcommand\{\textbackslash enquote\}[1]\{``\#1''\}. Die bbl-Datei entsteht, nachdem BibTex ausgefuehrt worden ist.
+
+\bibliography{Bibliography}
+
+\end{document}

@@ -1,0 +1,10 @@
+
+*.DS_Store
+*.pdf
+*.aux
+*.bbl
+*.log
+*.out
+*.gz
+*.toc
+*.blg

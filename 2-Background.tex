@@ -1,0 +1,49 @@
+\chapter{BACKGROUND}
+\label{ch:background}
+
+\section{Referencing}
+\label{ch:referencing}
+You can reference anything you give a label by using $\backslash$ref\{\}. If you want to use clever referencing, use $\backslash$cref\{\}, automatically adding the type of reference (\cref{ch:background}, \cref{ch:referencing}, \cref{fig:TU_logo}, \cref{eq:equation}). Use the Capitalized $\backslash$Cref\{\} at the beginning of sentences:
+
+\Cref{fig:TU_logo}, as opposed to \cref{fig:TU_logo}
+
+\begin{figure}[htb] %<- [...] defines the positioning, use [h!] to force the figure to be here
+	\centering
+	\includegraphics[width=.3\linewidth]{Graphics/TU_Logo_kurz_RGB_rot}
+	\caption{This is a figure.}
+	\label{fig:TU_logo}
+\end{figure}
+
+This is an equation:
+\begin{equation}\label{eq:equation}
+	E = m \cdot c^2
+\end{equation}
+
+Use $\backslash$SI\{\}\{\} from the siunitx package for easy unit typesetting in equations:
+\begin{equation}\label{eq:equation}
+	\nu = \SI{15}{m/s}
+\end{equation}
+
+\clearpage % <- use this for a pagebreak
+
+This is a table:
+\begin{table}[h!]
+	\small
+	\centering
+	\begin{tabular}{l c c l l l}
+		\toprule
+		\textbf{Type}  &\textbf{Slope} &\textbf{Offset}     &\textbf{Content}    \\\midrule
+		1        &$-0.1$        &$-8$              		& speech          	\\
+		1        &$-1$        &$-8$              		& clicks         	   \\
+		1        &n/s           	 &$-2$ to $-10^2$    & noise         	   	\\
+		2        &$-0.5$      &$-0$ to $-15^2$    & speech				\\
+		1        &$-0.20$       &$-14$ to $-20^1$  & speech				\\
+		1        &$-1.5$       &$-11$ to $-23^2$ & speech   \\
+		1        &$-0.4$       &$-5$ to $-20^2$   & speech	 \\\bottomrule
+	\end{tabular}
+	\caption{This is a table. {\footnotesize $^1$Depending on things; $^2$Depending on other things.}}
+	\label{tab:Offset_slope}
+\end{table}
+
+Creating tables for \LaTeX is a lot easier using a table generator: \\
+\url{https://tablesgenerator.com}

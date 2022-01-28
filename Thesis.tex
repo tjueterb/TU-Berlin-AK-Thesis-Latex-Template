@@ -1,0 +1,120 @@
+%------------------------------------------------------------------------------------------------ %
+\documentclass[12pt,oneside,a4paper]{scrreport}	% Schriftgroesse, Layout, Papierformat, Art des Dokumentes
+\usepackage[utf8]{inputenc}											% Umlaute ermoeglichen
+\newcounter{mainlanguage} 
+\newcounter{citationstyle} 
+
+ %------------------------------------------------------------------------------------------------ %
+% Sprache und Zitierstil wählen:
+\setcounter{mainlanguage}{1} % 0 für Deutsch, 1 für Englisch
+\setcounter{citationstyle}{0} % 0 für Nummern, 1 für Author/Jahr
+
+
+
+%------------------------------------------------------------------------------------------------ %
+%  nicht bearbeiten - hier werden die Einstellungen für Sprache und Zitierstil geladen:
+\ifnum\value{mainlanguage}=0
+	\usepackage[english,main=ngerman]{babel}	    % Deutsch
+	\ifnum\value{citationstyle}=0
+		\bibliographystyle{FG_AK_Deutsch_Nummer}
+		\usepackage[numbers]{natbib}   							% ... fuer Nummerierungsstil	
+	\fi 
+	\ifnum\value{citationstyle}=1
+		\bibliographystyle{FG_AK_Deutsch_AutorJahr}
+		\usepackage{natbib}	    											% ... fuer Autor/Jahr-Stil
+	\fi
+\fi
+\ifnum\value{mainlanguage}=1
+	\usepackage[ngerman,main=english]{babel}	    % Englisch
+	\ifnum\value{citationstyle}=0
+		\bibliographystyle{FG_AK_English_Number}
+		\usepackage[numbers]{natbib}   									% ... fuer Nummerierungsstil	
+	\fi 
+	\ifnum\value{citationstyle}=1
+		\bibliographystyle{FG_AK_English_AuthorYear}
+		\usepackage{natbib}	    											% ... fuer Autor/Jahr-Stil
+	\fi
+\fi
+
+%------------------------------------------------------------------------------------------------ %
+% User Packages
+\usepackage{graphicx} % for graphics
+\usepackage{amsmath} % for math typesetting
+\usepackage{amssymb} % more math symbols
+\usepackage{siunitx}
+%\usepackage{subcaption} %include this to give captions to subfigures
+\usepackage{booktabs} % for nicer tables
+\usepackage[onehalfspacing]{setspace} % always load setspace before hyperref!
+\usepackage{hyperref} % makes reference links and hyperlinks clickable
+\usepackage{cleveref} % intelligent cross referencing
+
+
+
+
+%------------------------------------------------------------------------------------------------ %
+\title{Thesis Title}
+\author{Firstname Lastname}
+\date{\today}
+
+
+%------------------------------------------------------------------------------------------------ %
+\begin{document}
+
+\include{Titlepage.tex}
+
+% Hier Werte wie gewünscht ändern oder auskommentieren:
+% Binding Correction:
+\KOMAoptions{BCOR=0mm}
+%skip a line instead of indent at new paragraphs:
+\KOMAoptions{parskip=half}
+% enable subsubsection numbering:
+\setcounter{secnumdepth}{\subsubsectionnumdepth}
+% show subsubsections in table of contents
+\setcounter{tocdepth}{\subsubsectionnumdepth}
+% change margin above chapter headline
+\RedeclareSectionCommand[beforeskip=1cm]{chapter}
+
+
+
+
+\pagenumbering{Roman}
+% Eidesstattliche Erklärung
+\section*{Eidesstattliche Erklärung}
+\thispagestyle{empty}
+\begin{otherlanguage}{ngerman}
+Hiermit erkläre ich an Eides statt gegenüber der Fakultät I der Technischen Universität Berlin, dass die vorliegende, dieser Erklärung angefügte Arbeit selbstständig und nur unter Zuhilfenahme der im Literaturverzeichnis genannten Quellen und Hilfsmittel angefertigt wurde. Alle Stellen der Arbeit, die anderen Werken dem Wortlaut oder dem Sinn nach entnommen wurden, sind kenntlich gemacht. Ich reiche die Arbeit erstmals als Prüfungsleistung ein.\\
+\end{otherlanguage}
+\vspace*{2cm}\\
+\noindent Berlin, den .....................\\
+\vspace*{.5cm}\\
+\noindent ........................................ \\
+(Unterschrift)
+\newpage
+
+\include{0-Abstract.tex}
+\newpage
+
+\tableofcontents
+\newpage
+
+% CONTENT HERE
+\pagenumbering{arabic}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+\include{1-Introduction.tex}
+\include{2-Background.tex}
+\include{3-Methods.tex}
+\include{4-Discussion.tex}
+\include{5-Future_Work.tex}
+\appendix
+\include{6-Appendix.tex}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\clearpage
+\bibliography{bibliography.bib}
+
+\end{document}
